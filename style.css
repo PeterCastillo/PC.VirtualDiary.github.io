@@ -9,7 +9,7 @@
 
 .vd {
     width: 80rem;
-    height: 38rem;
+    height: 30rem;
     background-color: hsl(223, 64%, 92%);
     color: hsl(220, 14%, 40%);
 }
@@ -48,22 +48,6 @@
     padding: .3rem;
     cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .vd__content__diary {
     width: 65rem;
     height: 100%;
@@ -71,7 +55,6 @@
     justify-content: space-between;
     padding: 1.1rem;
 }
-
 .vd__content__diary__day{
     width: 6.2rem;
     display: flex;
@@ -84,7 +67,6 @@
     justify-content: space-between;
     gap: 0.3rem;
 }
-
 .vd__content__diary__day--day {
     display: inline-block;
     width: 100%;
@@ -96,21 +78,10 @@
     background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-
 .vd__content__diary__day--tarea {
     height: 6rem;
     width: 100%;
 }
-
-.vd__favorites {
-    width: 100%;
-    height: 8rem;
-    display: flex;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    gap: 2rem;
-}
-
 .vd__content__diary__day--tarea {
     display: flex;
     flex-direction: column;
