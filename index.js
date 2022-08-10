@@ -6,13 +6,13 @@ const tareadescripcion = document.getElementById('descripcion');
 const fragmento = document.createDocumentFragment();
 const container = document.querySelector('.vd__content__diary')
 
-let Lunes = {};
-let Martes = {};
-let Miercoles = {};
-let Jueves = {};
-let Viernes = {};
-let Sabado = {};
-let Domingo = {};
+let dayLunes = {};
+let dayMartes = {};
+let dayMiercoles = {};
+let dayJueves = {};
+let dayViernes = {};
+let daySabado = {};
+let dayDomingo = {};
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -31,55 +31,59 @@ const settarea = () => {
         descripcion: tareadescripcion.value,
         estado:false
     };
-    switch (dia.value) {
-        case "Lunes":
-            if(Object.keys(Lunes).length === 4){
-                return}
-            Lunes[tarea.id] = tarea;
-            pintarTareas(Lunes);
-            break;
-        case "Martes":
-            if(Object.keys(Martes).length === 4){
-                return}
-            Martes[tarea.id] = tarea;
-            pintarTareas(Martes);
-            break;
-        case "Miercoles":
-            if(Object.keys(Miercoles).length === 4){
-                return}
-            Miercoles[tarea.id] = tarea;
-            pintarTareas(Miercoles);
-            break;
-        case "Jueves":
-            if(Object.keys(Jueves).length === 4){
-                return}
-            Jueves[tarea.id] = tarea;
-            pintarTareas(Jueves);
-            break;
-        case "Viernes":
-            if(Object.keys(Viernes).length === 4){
-                return}
-            Viernes[tarea.id] = tarea;
-            pintarTareas(Viernes);
-            break;
-        case "Sabado":
-            if(Object.keys(Sabado).length === 4){
-                return}
-            Sabado[tarea.id] = tarea;
-            pintarTareas(Sabado);
-            break;
-        case "Domingo":
-            if(Object.keys(Domingo).length === 4){
-                return}
-            Domingo[tarea.id] = tarea;
-            pintarTareas(Domingo);
-            break;    
-    }
+    days(tareadia.value,tarea)
     formulario.reset();
 };
 
-const pintarTareas = (diaTarea) => {
-    const tareaDia = document.querySelector(`.${dia.value}`)
+const days = (dia,tarea) => {
+    switch (dia) {
+        case "Lunes":
+            if(Object.keys(dayLunes).length === 4){
+                return}
+            dayLunes[tarea.id] = tarea;
+            pintarTareas(dayLunes,"Lunes");
+            break;
+        case "Martes":
+            if(Object.keys(dayMartes).length === 4){
+                return}
+            dayMartes[tarea.id] = tarea;
+            pintarTareas(dayMartes,"Martes");
+            break;
+        case "Miercoles":
+            if(Object.keys(dayMiercoles).length === 4){
+                return}
+            dayMiercoles[tarea.id] = tarea;
+            pintarTareas(dayMiercoles, "Miercoles");
+            break;
+        case "Jueves":
+            if(Object.keys(dayJueves).length === 4){
+                return}
+            dayJueves[tarea.id] = tarea;
+            pintarTareas(dayJueves, "Jueves");
+            break;
+        case "Viernes":
+            if(Object.keys(dayViernes).length === 4){
+                return}
+            dayViernes[tarea.id] = tarea;
+            pintarTareas(dayViernes, "Viernes");
+            break;
+        case "Sabado":
+            if(Object.keys(daySabado).length === 4){
+                return}
+            daySabado[tarea.id] = tarea;
+            pintarTareas(daySabado, "Sabado");
+            break;
+        case "Domingo":
+            if(Object.keys(dayDomingo).length === 4){
+                return}
+            dayDomingo[tarea.id] = tarea;
+            pintarTareas(dayDomingo, "Domingo");
+            break;    
+    };
+};
+    
+const pintarTareas = (diaTarea,diooo) => {
+    const tareaDia = document.querySelector(`.${diooo}`)
     tareaDia.innerHTML = '';
     Object.values(diaTarea).forEach(tarea => {
         let div = document.createElement('div');
@@ -104,20 +108,38 @@ container.addEventListener('click' , (e) => {
 });
 
 const tareasetborrar = (Object,id) => {
-    console.log(Object,id);
-    delete Lunes[id];
-    // let diaborrar = Object.querySelector('.vd__content__diary__day--day').textContent;
-    // holas(diaborrar,id);
-}
+    switch (Object.querySelector('.vd__content__diary__day--day').textContent) {
+        case "Lunes":
+            delete dayLunes[id];
+            pintarTareas(dayLunes,"Lunes");
+            break;
+        case "Martes":
+            delete dayMartes[id];
+            pintarTareas(dayMartes,"Martes");
+            break;
+        case "Miercoles":
+            delete dayMiercoles[id];
+            pintarTareas(dayMiercoles,"Miercoles");
+        break;   
+        case "Jueves":
+            delete dayJueves[id];
+            pintarTareas(dayJueves,"Jueves");
+            break;
+        case "Viernes":
+            delete dayViernes[id];
+            pintarTareas(dayViernes,"Viernes");
+            break;
+        case "Sabado":
+            delete daySabado[id];
+            pintarTareas(daySabado,"Sabado");
+        break;   
+        case "Domingo":
+            delete dayDomingo[id];
+            pintarTareas(dayDomingo,"Domingo");
+        break;     
+    }
 
-// const holas = (diahola,id) => {
-//     switch (diahola) {
-//         case "Lunes":
-//             delete Lunes[id];
-//             pintarTareas(Lunes);
-//             break;
-//     }
-// }
+}
 
 const borrartarea = (e) => {
     if(e.target.classList.contains('fa-minus-circle')){
