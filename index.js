@@ -82,14 +82,14 @@ const days = (dia,tarea) => {
     };
 };
     
-const pintarTareas = (diaTarea,diooo) => {
-    const tareaDia = document.querySelector(`.${diooo}`)
+const pintarTareas = (diaTarea,diaContent) => {
+    const tareaDia = document.querySelector(`.${diaContent}`)
     tareaDia.innerHTML = '';
     Object.values(diaTarea).forEach(tarea => {
         let div = document.createElement('div');
         div.classList.add('vd__content__diary__day--tarea');
         const tareaContent = `
-        <span>${tarea.nombre}</span>
+        <span class="tareaNombre">${tarea.nombre}</span>
         <span>Hora:${tarea.hora}</span>
         <div><i class="fas fa-check-circle text-success" data-id="${tarea.id}" role="button"></i><i class="fas fa-minus-circle text-danger" data-id="${tarea.id}" role="button"></i></div>
         <div class="details">
@@ -98,6 +98,10 @@ const pintarTareas = (diaTarea,diooo) => {
         </div>
         `
         div.innerHTML = tareaContent;
+        if(tarea.estado){
+            div.querySelector('.text-success').classList.replace('fa-check-circle','fa-undo-alt');
+            div.querySelector('.tareaNombre').style.textDecoration = 'line-through'
+        }
         fragmento.appendChild(div);
         tareaDia.appendChild(fragmento);
     });
@@ -106,6 +110,52 @@ const pintarTareas = (diaTarea,diooo) => {
 container.addEventListener('click' , (e) => {
     borrartarea(e);
 });
+
+const borrartarea = (e) => {
+    if(e.target.classList.contains('fa-minus-circle')){
+        tareasetborrar(e.target.parentElement.parentElement.parentElement.parentElement,e.target.dataset.id);
+    };
+    if(e.target.classList.contains('fa-check-circle')){
+        changeestado(e.target.parentElement.parentElement.parentElement.parentElement,e.target.dataset.id,true);
+    };
+    if(e.target.classList.contains('fa-undo-alt')){
+        changeestado(e.target.parentElement.parentElement.parentElement.parentElement,e.target.dataset.id,false);
+    }
+    e.stopPropagation;
+}
+
+const changeestado = (Object,id,estado) => {
+    switch (Object.querySelector('.vd__content__diary__day--day').textContent) {
+        case "Lunes":
+            dayLunes[id].estado = estado;
+            pintarTareas(dayLunes,"Lunes");
+            break;
+        case "Martes":
+            dayMartes[id].estado = estado;
+            pintarTareas(dayMartes,"Martes");
+            break;
+        case "Miercoles":
+            dayMiercoles[id].estado = estado;
+            pintarTareas(dayMiercoles,"Miercoles");
+        break;   
+        case "Jueves":
+            dayJueves[id].estado = estado;
+            pintarTareas(dayJueves,"Jueves");
+            break;
+        case "Viernes":
+            dayViernes[id].estado = estado;
+            pintarTareas(dayViernes,"Viernes");
+            break;
+        case "Sabado":
+            daySabado[id].estado = estado;
+            pintarTareas(daySabado,"Sabado");
+        break;   
+        case "Domingo":
+            dayDomingo[id].estado = estado;
+            pintarTareas(dayDomingo,"Domingo");
+        break;  
+    };
+};
 
 const tareasetborrar = (Object,id) => {
     switch (Object.querySelector('.vd__content__diary__day--day').textContent) {
@@ -137,15 +187,11 @@ const tareasetborrar = (Object,id) => {
             delete dayDomingo[id];
             pintarTareas(dayDomingo,"Domingo");
         break;     
-    }
+    };
+};
 
-}
 
-const borrartarea = (e) => {
-    if(e.target.classList.contains('fa-minus-circle')){
-        tareasetborrar(e.target.parentElement.parentElement.parentElement.parentElement,e.target.dataset.id);
-    }
-}
+
 
 
 

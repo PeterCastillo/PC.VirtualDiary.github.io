@@ -20,11 +20,11 @@
                     <div><span>VirtualDiary</span><span>ByPeter</span></div>
                     <div class="vd__content__form--form">
                         <label for="tarea">Tarea:</label>
-                        <input type="text" name="" id="tarea" placeholder="Ingrese nombre de tarea">
+                        <input type="text" name="" id="tarea" placeholder="Ingrese nombre de tarea"  maxlength="9" required>
                     </div>
                     <div class="vd__content__form--form">
                         <label for="dia">Dia:</label>
-                        <select name="" id="dia">
+                        <select name="" id="dia" required>
                             <option disabled selected value>Select an option</option><!--Importate poner eso para que el campo se nos haga requerido-->
                             <option value="Lunes">Lunes</option>
                             <option value="Martes">Martes</option>
@@ -37,11 +37,11 @@
                     </div>
                     <div class="vd__content__form--form">
                         <label for="hora">Hora:</label>
-                        <input type="time" name="" id="hora">
+                        <input type="time" name="" id="hora" required>
                     </div>
                     <div class="vd__content__form--form">
                         <label for="descripcion">Descripcion</label>
-                        <textarea name="" id="descripcion" cols="30" rows="10" placeholder="Ingrese una breve descripcion de la tarea"></textarea>
+                        <textarea name="" id="descripcion" cols="30" rows="10" placeholder="Ingrese una breve descripcion de la tarea" required></textarea>
                     </div>
                     <button >AGREGAR</button>
                 </form>
