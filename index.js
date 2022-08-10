@@ -105,6 +105,7 @@ container.addEventListener('click' , (e) => {
 
 const tareasetborrar = (Object,id) => {
     console.log(Object,id);
+    delete Lunes[id];
     // let diaborrar = Object.querySelector('.vd__content__diary__day--day').textContent;
     // holas(diaborrar,id);
 }
